@@ -13,7 +13,7 @@ This week, I built a Node.js command-line application that takes in user input a
 You can watch the walk through video with the following link: [Video](https://app.screencastify.com/v3/watch/irMiI5q1Adxt93vErrsh)
 
 ## Logo Screenshot
-
+![Screenshot](https://github.com/Hayden-Cook/Challenge-10-SVGMaker/blob/main/examples/example2.svg)
 
 ## Installation
 To install the packages, clone the repo to your local terminal and run npm install.
