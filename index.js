@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const { Circle, Square, Triangle } = require("./lib/shapes");
+const generateSVG = require("./lib/generateSVG");
 
 const questions = [
     {
@@ -27,30 +27,6 @@ const questions = [
     },
 ];
 
-function generateSVG({ text, textColor, shape, shapeColor }) {
-    let shapeInstance;
-    switch (shape) {
-        case "Circle":
-            shapeInstance = new Circle();
-            break;
-        case "Square":
-            shapeInstance = new Square();
-            break;
-        case "Triangle":
-            shapeInstance = new Triangle();
-            break;
-    }
-
-    shapeInstance.setColor(shapeColor);
-
-    return `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200">
-        ${shapeInstance.render()}
-        <text x="150" y="125" font-size="60" fill="${textColor}" text-anchor="middle">${text}</text>
-    </svg>
-`;
-}
-
 function init() {
     inquirer.prompt(questions).then((answers) => {
         const svgContent = generateSVG(answers);
@@ -58,7 +34,7 @@ function init() {
             if (err) {
                 console.error("error writing file: ", err);
             } else {
-                console.log("Successfully generated logo.svg");
+                console.log("Generated logo.svg");
             }
         });
 });
