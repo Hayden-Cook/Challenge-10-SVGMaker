@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const path = require('path');
 const generateSVG = require("./lib/generateSVG");
 
 const questions = [
@@ -30,6 +31,12 @@ const questions = [
 function init() {
     inquirer.prompt(questions).then((answers) => {
         const svgContent = generateSVG(answers);
+        const outputDir = path.join(__dirname, "dist");
+
+        if (!fs.existsSync(outputDir)) {
+            fs.mkdirSync(outputDir);
+        }
+
         fs.writeFile("./dist/logo.svg", svgContent, (err) => {
             if (err) {
                 console.error("error writing file: ", err);
